@@ -1,8 +1,42 @@
 <p align="center">
+    <h1 align="center">Test task</h1>
+    <br>
+    Hi there! This is my test task. I won't do codeceptions tests (AQA) for saving my time, 
+    so requirements that you provided to me, little bit ignored. Also i prefer make MPA applications 
+    as backend-oriented developer, but anyway i'd develope SPA (and actually i did it) for you. 
+    Okay so:  
+</p>
+
+API
+-------------------
+### api/v1/[method]
+List of methods: 
+
+                POST projects - Create project;
+                GET projects/<id> where <id> is project ID - Get project by id; 
+                GET projects - Get list of projects;
+                PATCH projects/<id> where <id> is project ID - PATCH (NOT PUT) project; 
+                DELETE projects/<id> where <id> is project ID - Drop project by id; 
+                POST projects/<id>/task where <id> is project ID - Create task for project by project ID
+                GET tasks/<id> where <id> is task ID - Get task by ID; 
+                GET projects/<id>/tasks where <id> is project ID - Get list of tasks for project;
+                PATCH tasks/<id> where <id> is task ID;
+                DELETE tasks/<id> where <id> is project ID - Drop project by id; 
+
+
+DIRECTORY STRUCTURE
+-------------------
+
+      modules/            sources for modules
+      modules/task        services for tasks domain logic
+      modules/project     services for projects domain logic
+      modules/user        services for user domain logic
+
+<p>
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">Yii 2 Basic Project Template</h1>
+    <h1 align="center">Yii 2 DEFAULT README</h1>
     <br>
 </p>
 
@@ -15,7 +49,6 @@ features to your application.
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
 [![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-basic.svg)](https://packagist.org/packages/yiisoft/yii2-app-basic)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-basic.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-basic)
 
 DIRECTORY STRUCTURE
 -------------------

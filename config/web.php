@@ -43,14 +43,32 @@ $config = [
             ],
         ],
         'db' => $db,
-        /*
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                //todo move to module.
+                'POST api/v1/projects' => 'create project',
+                'GET api/v1/projects/<id>' => 'get project',
+                'GET api/v1/projects' => 'get projects list',
+                'PATCH api/v1/projects/<id>' => 'patch project',
+                'DELETE api/v1/projects/<id>' => 'delete project',
+
+                'POST api/v1/projects/<id>/task' => 'create task',
+                'GET api/v1/tasks/<id>' => 'get task by id',
+                'GET api/v1/projects/<id>/tasks' => 'get list of tasks',
+                'PATCH api/v1/tasks/<id>' => 'change task',
+                'DELETE api/v1/tasks/<id>' => 'drop tasks',
+
+
+                // BASIC AUTH without refresh token. Todo make refresh token.
+                'POST api/v1/login' => 'login',
+                'GET api/v1/logout' => 'logout'
+
             ],
         ],
-        */
+
     ],
     'params' => $params,
 ];

@@ -21,6 +21,37 @@ var Storage = {
 };
 
 
+var Controller = {
+    signupRequest: function(data) {
+
+    },
+
+    loginRequest: function(login, password) {
+        $.ajax({
+            'url': '/api/v1/login',
+            'method': 'POST',
+            'data' : {
+                'login' : login,
+                'password' : password
+            },
+            'success': function (resp) {
+                if(resp && resp.auth_token) {
+                    TokenRepository.set(resp.auth_token);
+                }
+            },
+
+            'error': function (resp) {
+                //handle error
+            }
+
+        });
+
+    },
+}
+
+
+
+
 var LoginForm = {
     $container : $('#login-form'),
     init: function() {
@@ -29,6 +60,10 @@ var LoginForm = {
             e.preventDefault();
             $container.modal('hide');
             SignUpForm.show();
+        });
+        $container.find('form').on('submit', function(e) {
+            e.preventDefault();
+            Controller.loginRequest();
         });
 
     },
@@ -47,6 +82,7 @@ var SignUpForm = {
             LoginForm.show();
         });
 
+
     },
 
     'show' : function () {
@@ -58,22 +94,16 @@ var SignUpForm = {
 
 
 
+
 $(document).ready(
     function() {
+        'use strict';
         LoginForm.init();
         SignUpForm.init();
-
-
-
-
-
-
-        'use strict';
 
         if(!TokenRepository.get()) {
             LoginForm.show();
         }
-
 
 
     }

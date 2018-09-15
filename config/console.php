@@ -27,6 +27,11 @@ $config = [
         ],
         'db' => $db,
     ],
+    'modules' => [
+        'task' => ['class' => 'app\modules\task\TaskModule'],
+        'project' => ['class' => 'app\modules\project\ProjectModule'],
+        'user' => ['class' => 'app\modules\user\UserModule']
+    ],
     'params' => $params,
     /*
     'controllerMap' => [

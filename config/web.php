@@ -1,5 +1,5 @@
 <?php
-
+use app\controllers\SiteController;
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -10,6 +10,11 @@ $config = [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+    ],
+    'modules' => [
+        'task' => ['class' => \app\modules\task\TaskModule::class],
+        'project' => ['class' => \app\modules\project\ProjectModule::class],
+        'user' => ['class' => \app\modules\user\UserModule::class]
     ],
     'components' => [
         'request' => [
@@ -49,23 +54,22 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 //todo move to module.
-                'POST api/v1/projects' => 'create project',
-                'GET api/v1/projects/<id>' => 'get project',
-                'GET api/v1/projects' => 'get projects list',
-                'PATCH api/v1/projects/<id>' => 'patch project',
-                'DELETE api/v1/projects/<id>' => 'delete project',
+                'POST api/v1/projects' => 'project/api/create',
+                'GET api/v1/projects/<id>' => 'project/api/get',
+                'GET api/v1/projects' => 'project/api/get',
+                'PATCH api/v1/projects/<id>' => 'project/api/update',
+                'DELETE api/v1/projects/<id>' => 'project/api/drop',
 
-                'POST api/v1/projects/<id>/task' => 'create task',
-                'GET api/v1/tasks/<id>' => 'get task by id',
-                'GET api/v1/projects/<id>/tasks' => 'get list of tasks',
-                'PATCH api/v1/tasks/<id>' => 'change task',
-                'DELETE api/v1/tasks/<id>' => 'drop tasks',
+                'POST api/v1/projects/<id>/task' => 'task/api/create',
+                'GET api/v1/tasks/<id>' => 'task/api/get',
+                'GET api/v1/projects/<id>/tasks' => 'project/api/get-tasks-by-project-id',
+                'PATCH api/v1/tasks/<id>' => 'task/api/update',
+                'DELETE api/v1/tasks/<id>' => 'task/api/drop',
 
 
                 // BASIC AUTH without refresh token. Todo make refresh token.
-                'POST api/v1/login' => 'login',
-                'GET api/v1/logout' => 'logout'
-
+                'POST /api/v1/login' => 'user/api/login',
+                'POST api/v1/signup' => 'user/api/signup',
             ],
         ],
 

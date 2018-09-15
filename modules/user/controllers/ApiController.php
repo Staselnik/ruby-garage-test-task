@@ -13,16 +13,14 @@ class ApiController extends Controller
 {
 
 
+    public $enableCsrfValidation = false;
 
-    public function acitonLogin()
+
+    public function actionLogin()
     {
 
     }
 
-    public function actionLogout()
-    {
-
-    }
 
     public function actionSignup()
     {

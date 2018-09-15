@@ -7,28 +7,30 @@
 namespace app\modules\project\controllers;
 
 
+use app\controllers\BaseApiController;
 use yii\web\Controller;
 
-class ApiController extends Controller
+class ApiController extends BaseApiController
 {
-    public function actionCreateProject()
+    public function actionCreate()
     {
 
     }
 
-    public function actionGetProject(int $id = null)
-    {
-
-    }
-
-
-    public function actionUpdateProject(int $id)
+    public function actionGet(int $id = null)
     {
 
 
     }
 
-    public function actionDeleteProject(int $id)
+
+    public function actionUpdate(int $id)
+    {
+
+
+    }
+
+    public function actionDrop(int $id)
     {
 
     }

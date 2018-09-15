@@ -4,11 +4,11 @@
  * Time: 9:16
  */
 
-namespace app\modules\task\models;
+namespace app\modules\user\models;
 
 use app\modules\project\models\ProjectRecord;
 use Yii;
-
+use yii\behaviors\TimestampBehavior;
 /**
  * This is the model class for table "users".
  *
@@ -37,7 +37,7 @@ class UserRecord extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'created_at', 'updated_at', 'password_hash'], 'required'],
+            [['username', 'password_hash'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['username', 'email', 'password_hash'], 'string', 'max' => 255],
             [['username'], 'unique'],

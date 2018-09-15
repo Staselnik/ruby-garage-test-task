@@ -7,12 +7,12 @@
 namespace app\modules\task\controllers;
 
 
-use yii\web\Controller;
+use app\controllers\BaseApiController;
 
-class ApiController extends Controller
+class ApiController extends BaseApiController
 {
 
-    public function actionCreateTask()
+    public function actionCreate()
     {
 
     }
@@ -22,12 +22,12 @@ class ApiController extends Controller
 
     }
 
-    public function actionUpdateTask(int $id)
+    public function actionUpdate(int $id)
     {
 
     }
 
-    public function actionDeleteTask(int $id)
+    public function actionDrop(int $id)
     {
 
     }

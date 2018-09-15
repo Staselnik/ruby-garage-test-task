@@ -8,7 +8,6 @@ namespace app\modules\user\services;
 
 
 use app\modules\user\models\UserRecord;
-use Yii;
 use yii\base\Security;
 use yii\web\ForbiddenHttpException;
 use yii\web\UnauthorizedHttpException;
@@ -30,8 +29,8 @@ class AuthorizationService
      */
     public function auth(string $authToken) : UserRecord
     {
-        $customer = $this->getUserByAuthToken($authToken);
-        return $customer;
+        $user = $this->getUserByAuthToken($authToken);
+        return $user;
     }
 
 
@@ -50,7 +49,8 @@ class AuthorizationService
         $userRecord->password_hash = $this->hashPassword($password);
         $userRecord->auth_token = $this->securityService->generateRandomString();
 
-        if(!$userRecord->save()) {
+        if(!$userRecord->save())
+        {
             throw new \Exception(json_encode($userRecord->getErrors()));
         }
 

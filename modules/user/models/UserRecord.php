@@ -9,6 +9,8 @@ namespace app\modules\user\models;
 use app\modules\project\models\ProjectRecord;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
+
 /**
  * This is the model class for table "users".
  *
@@ -43,6 +45,16 @@ class UserRecord extends \yii\db\ActiveRecord
             [['username', 'email', 'password_hash'], 'string', 'max' => 255],
             ['auth_token', 'string', 'max' => 60],
             [['username'], 'unique']
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'value' => new Expression('now()::timestamp')
+            ]
         ];
     }
 

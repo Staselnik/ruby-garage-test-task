@@ -9,6 +9,7 @@ namespace app\controllers;
 
 use app\modules\user\models\UserRecord;
 use app\modules\user\services\AuthorizationService;
+use yii\base\Module;
 use yii\web\Controller;
 
 class BaseApiController extends Controller

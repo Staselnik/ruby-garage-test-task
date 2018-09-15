@@ -8,6 +8,8 @@ namespace app\modules\task\models;
 
 use app\modules\project\models\ProjectRecord;
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "tasks".
@@ -46,6 +48,16 @@ class TaskRecord extends \yii\db\ActiveRecord
             [['project_id', 'created_at', 'updated_at'], 'required'],
             [['title'], 'string', 'max' => 255],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => ProjectRecord::class, 'targetAttribute' => ['project_id' => 'id']],
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'value' => new Expression('now()::timestamp')
+            ]
         ];
     }
 

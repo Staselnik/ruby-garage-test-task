@@ -36,6 +36,7 @@ class ApiController extends Controller
         $pass = \Yii::$app->request->post('password');
         $authService = \Yii::$container->get(AuthorizationService::class);
         $token = $authService->loginByUsername($login, $pass);
+        //todo remake and return UserModel instead of token
         return ['auth_token' => $token];
     }
 
@@ -50,6 +51,7 @@ class ApiController extends Controller
          */
         $authService = \Yii::$container->get(AuthorizationService::class);
         $user = $authService->signup($login, $email, $pass);
+        //todo remake and return UserModel instead of token
         return ['auth_token' => $user->auth_token];
     }
 

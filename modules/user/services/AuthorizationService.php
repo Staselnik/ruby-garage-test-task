@@ -9,11 +9,18 @@ namespace app\modules\user\services;
 
 use app\modules\user\models\UserRecord;
 use Yii;
+use yii\base\Security;
 use yii\web\ForbiddenHttpException;
 use yii\web\UnauthorizedHttpException;
 
 class AuthorizationService
 {
+    protected $securityService;
+
+    public function __construct(Security $securityService)
+    {
+        $this->securityService = $securityService;
+    }
 
     /**
      * @param $authToken
@@ -32,32 +39,50 @@ class AuthorizationService
      * @param string $username
      * @param string $email
      * @param string $password
-     * @return string auth-token
+     * @return UserRecord
      */
-    public function signup(string $username, string $email, string $password) : string
+    public function signup(string $username, string $email, string $password) : UserRecord
     {
+        $userRecord = new UserRecord();
+        $userRecord->username = $username;
+        $userRecord->email = $email;
+        //todo use UserModel for checking password rules.
+        $userRecord->password_hash = $this->hashPassword($password);
+        $userRecord->auth_token = $this->securityService->generateRandomString();
 
+        if(!$userRecord->save()) {
+            throw new \Exception(json_encode($userRecord->getErrors()));
+        }
+
+        return $userRecord;
     }
 
 
     /**
      * @param string $username
      * @param string $password
-     * @return string auth-token
+     * @return string
+     * @throws \yii\base\Exception
      */
     public function loginByUsername(string $username, string $password) : string
     {
-
+        $encryptedPassword = $this->hashPassword($password);
+        $user = UserRecord::find()->where(['password_hash' => $encryptedPassword, 'username' => $username])->one();
+        if(!$user instanceof UserRecord) {
+            throw new UnauthorizedHttpException("Authorization failed");
+        }
+        return $user->auth_token;
     }
 
     /**
      * @param string $email
      * @param string $password
-     * @return string auth-token
+     * @return string
+     * @throws \Exception
      */
     public function loginByEmail(string $email, string $password) : string
     {
-
+        throw new \Exception('Not implemented yet');
     }
 
     /**
@@ -71,9 +96,15 @@ class AuthorizationService
             throw new UnauthorizedHttpException("You're not authorized");
         }
         $user = UserRecord::find()->where(['token' => $authToken])->one();
-        if(!$user) {
+        if(!$user instanceof UserRecord) {
             throw new UnauthorizedHttpException("You're not authorized");
         }
         return $user;
+    }
+
+    private function hashPassword(string $password) : string
+    {
+        return $this->securityService->generatePasswordHash($password);
+
     }
 }

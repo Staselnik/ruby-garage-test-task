@@ -18,6 +18,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $created_at
  * @property string $updated_at
  * @property string $password_hash
+ * @property string $auth_token
  *
  * @property ProjectRecord[] $projects
  */
@@ -40,7 +41,8 @@ class UserRecord extends \yii\db\ActiveRecord
             [['username', 'password_hash'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['username', 'email', 'password_hash'], 'string', 'max' => 255],
-            [['username'], 'unique'],
+            ['auth_token', 'string', 'max' => 60],
+            [['username'], 'unique']
         ];
     }
 
@@ -56,6 +58,7 @@ class UserRecord extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'password_hash' => 'Password Hash',
+            'auth_token' => 'Auth Token'
         ];
     }
 

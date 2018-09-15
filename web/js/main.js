@@ -23,13 +23,35 @@ var Storage = {
 
 var LoginForm = {
     $container : $('#login-form'),
+    init: function() {
+        var $container = this.$container;
+        $container.find('a#sign-up-link').click(function(e) {
+            e.preventDefault();
+            $container.modal('hide');
+            SignUpForm.show();
+        });
+
+    },
     'show' : function () {
         this.$container.modal('show')  ;
     }
 };
 
 var SignUpForm = {
+    $container : $('#signup-form'),
+    init: function() {
+        var $container = this.$container;
+        $container.find('a#login-link').click(function(e) {
+            e.preventDefault();
+            $container.modal('hide');
+            LoginForm.show();
+        });
 
+    },
+
+    'show' : function () {
+        this.$container.modal('show')  ;
+    }
 };
 
 
@@ -38,6 +60,9 @@ var SignUpForm = {
 
 $(document).ready(
     function() {
+        LoginForm.init();
+        SignUpForm.init();
+
 
 
 

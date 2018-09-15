@@ -23,10 +23,11 @@
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                     </div>
+                    <a id="sign-up-link" style="cursor:pointer">Or Sign Up</a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button class="btn btn-primary" type="submit">Save changes</button>
+                    <button class="btn btn-primary" type="submit">Login</button>
                 </div>
             </form>
         </div><!-- /.modal-content -->

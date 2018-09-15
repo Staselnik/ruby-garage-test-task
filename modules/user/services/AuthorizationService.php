@@ -95,7 +95,7 @@ class AuthorizationService
         if(!$authToken) {
             throw new UnauthorizedHttpException("You're not authorized");
         }
-        $user = UserRecord::find()->where(['token' => $authToken])->one();
+        $user = UserRecord::find()->where(['auth_token' => $authToken])->one();
         if(!$user instanceof UserRecord) {
             throw new UnauthorizedHttpException("You're not authorized");
         }

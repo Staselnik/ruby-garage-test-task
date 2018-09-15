@@ -11,6 +11,7 @@ use app\modules\user\models\UserRecord;
 use app\modules\user\services\AuthorizationService;
 use yii\base\Module;
 use yii\web\Controller;
+use yii\web\Response;
 
 class BaseApiController extends Controller
 {

@@ -41,7 +41,7 @@ class ProjectRecord extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['owner_user_id', 'created_at', 'updated_at'], 'required'],
+            [['owner_user_id'], 'required'],
             [['owner_user_id'], 'integer'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['title'], 'string', 'max' => 255],

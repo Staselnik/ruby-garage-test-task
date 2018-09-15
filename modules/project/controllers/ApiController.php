@@ -16,6 +16,9 @@ use app\modules\project\services\ProjectService;
 class ApiController extends BaseApiController
 {
 
+    /**
+     * @var ProjectService
+     */
     protected $projectService;
 
     public function __construct(string $id, \yii\base\Module $module, array $config = [])
@@ -26,7 +29,9 @@ class ApiController extends BaseApiController
 
     public function actionCreate()
     {
-        $this->projectService->create();
+        $result = $this->projectService->create($this->currentUser->id, \Yii::$app->request->post('title'));
+
+        return ['data' => $result->toArray()];
     }
 
     public function actionGet(int $id = null)
